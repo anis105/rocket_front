@@ -233,6 +233,71 @@ option[value="Low"] {
   font-weight: bold;
 }
 
+.sidebar-toggle-button {
+  /* Style your button here */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.sidebar {
+  /* Style your sidebar here */
+  width: 200px; /* Adjust as needed */
+  position: absolute;
+  top: 50px; /* Adjust as needed */
+  left: 10px;
+  background-color: #f0f0f0; /* Example background color */
+  padding: 10px;
+  border: 1px solid #ddd;
+  /* Additional styles */
+}
+
+.sidebar-item {
+  /* Styles for sidebar items */
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sidebar-item.selected {
+  background-color: #007bff; /* Example for selected item */
+  color: white;
+}
+
+.TodoList-main {
+  margin-left: 220px; /* Adjust based on the width of the sidebar */
+  /* Additional styles */
+}
+/* ... existing styles */
+
+.class-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.class-modal-content {
+  color:black;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+}
+
+.class-modal-content .close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 
 /* Responsiveness */
 @media only screen and (max-width: 600px) {

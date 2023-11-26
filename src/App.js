@@ -12,6 +12,24 @@ function TodoList() {
         return savedTodos ? JSON.parse(savedTodos) : initialTodos;
     });
 
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+    const classNames = ['ENPM611', 'ENPM612', 'ENPM613', 'ENPM614', 'ENPM809'];
+    const [selectedClass, setSelectedClass] = useState('All');
+
+    const [showClassModal, setShowClassModal] = useState(false);
+    const [activeClass, setActiveClass] = useState('');
+
+    // Function to open the modal with class details
+    const handleClassSelect = (className) => {
+        setSelectedClass(className);
+        openClassModal(className);
+    };
+
+    // Function to open the modal with class details
+    const openClassModal = (className) => {
+        setActiveClass(className);
+        setShowClassModal(true);
+    };
     const [newTask, setNewTask] = useState('');
     const [newPriority, setNewPriority] = useState('Medium');
     const [newNotes, setNewNotes] = useState('');
@@ -53,11 +71,55 @@ function TodoList() {
     }, {});
 
     return (
-        <div className="TodoList-container">
+        <div className="app-container">
+            {/* Button to Show/Hide Sidebar */}
+            <button
+                className="sidebar-toggle-button"
+                onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+            >
+                {isDropdownVisible ? 'Hide Classes' : 'Show Classes'}
+            </button>
+
+            {/* Collapsible Sidebar */}
+            {isDropdownVisible && (
+                <div className="sidebar">
+                    <button onClick={() => handleClassSelect('All')}>All Classes</button>
+                    {classNames.map(className => (
+                        <button
+                            key={className}
+                            className={`sidebar-item ${selectedClass === className ? 'selected' : ''}`}
+                            onClick={() => handleClassSelect(className)}
+                        >
+                            {className}
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            {/* Class Modal */}
+            {showClassModal && (
+                <div className="class-modal">
+                    <div className="class-modal-content">
+                        <span className="close" onClick={() => setShowClassModal(false)}>&times;</span>
+                        <h2>{activeClass}</h2>
+                        {/* File list or other content related to the class */}
+                        <ul>
+                            {/* Example file list */}
+                            <li>Assignment 1</li>
+                            <li>Assignment 2</li>
+                            <li>Project Details</li>
+                        </ul>
+                    </div>
+                </div>
+            )}
+
+            <div className="TodoList-container">
+
             {/* Login Tab */}
             <div className="login-tab" onClick={handleLogin}>
                 Log In
             </div>
+
             {/* Login Modal */}
             {showLogin && (
                 <div className="login-modal">
@@ -134,6 +196,7 @@ function TodoList() {
                     </ul>
                 </div>
             ))}
+        </div>
         </div>
     );
 }
