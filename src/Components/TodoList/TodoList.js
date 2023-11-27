@@ -128,12 +128,6 @@ function TodoList() {
             )}
 
             <div className="TodoList-container">
-
-                {/* Login Tab */}
-                <div className="login-tab" onClick={handleLogin}>
-                    Log In
-                </div>
-
                 {/* Login Modal */}
                 {showLogin && (
                     <div className="login-modal">

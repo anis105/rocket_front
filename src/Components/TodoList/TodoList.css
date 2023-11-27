@@ -21,40 +21,6 @@
 /*  background-size: 400% 400%;*/
 /*  animation: backgroundChange 15s ease infinite;*/
 /*}*/
-/* Login Tab Style */
-.login-tab {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  background-color: #1e90ff; /* Dodger blue color */
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.login-tab:hover {
-  background-color: #1a7ac8; /* Slightly darker blue on hover */
-}
-
-.login-tab {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.login-tab:hover {
-  background-color: #0056b3;
-}
-
 
 /* TodoList Container */
 .TodoList-container {
