@@ -94,14 +94,6 @@ function TodoList() {
 
     return (
         <div className="app-container">
-            {/* Button to Show/Hide Sidebar */}
-            <button
-                className="sidebar-toggle-button"
-                onClick={() => setIsDropdownVisible(!isDropdownVisible)}
-            >
-                {isDropdownVisible ? 'Hide Classes' : 'Show Classes'}
-            </button>
-
             {/* Collapsible Sidebar */}
             {isDropdownVisible && (
                 <div className="sidebar">
