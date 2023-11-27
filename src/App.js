@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, React} from 'react';
 import {
     DashboardOutlined,
     UnorderedListOutlined,
@@ -46,6 +46,7 @@ const App = () => {
                 <div className="sidebar-logo">
                     <img src={require("./Assets/img.png")} alt="logo"/>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
+                </div>
             </Sider>
 
             <Layout className="site-layout" style={{marginLeft: 200,}}>
