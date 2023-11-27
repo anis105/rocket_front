@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     DashboardOutlined,
     UnorderedListOutlined,
@@ -31,15 +31,13 @@ const items = [
     ]),
     getItem('Todo List', '3', <BookOutlined/>),
     getItem('Inbox', '4', <MailOutlined/>),
-    // getItem(
-    //     <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-    //         Ant Design
-    //     </a>,
-    //     'link',
-    //     <LinkOutlined />,
-    // ),
 ];
+
 const App = () => {
+    const [activeMenu, setActiveMenu] = useState('1');
+    const onMenuClick = (e) => {
+        setActiveMenu(e.key);
+    };
     return (
         <Layout hasSider>
             <Sider
@@ -60,7 +58,7 @@ const App = () => {
                     />
                     {/*<Title style={{color: "white", marginLeft: 5,}} level={1}>EduMorph</Title>*/}
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items}/>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
             </Sider>
             <Layout
                 className="site-layout"
@@ -71,7 +69,6 @@ const App = () => {
                 <Header
                     style={{
                         padding: 0,
-                        // background: colorBgContainer,
                     }}
                 >
                     <Title style={{color: "white", marginLeft: 20,}} level={2}>EduMorph</Title>
@@ -84,37 +81,13 @@ const App = () => {
                 >
                     #TODO: Fix the style issue
                     #TODO: Add switch/router to change page content
-                    {/*<TodoList/>*/}
-                    {/*<div*/}
-                    {/*    style={{*/}
-                    {/*        padding: 24,*/}
-                    {/*        textAlign: 'center',*/}
-                    {/*        // background: colorBgContainer,*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    <p>long content</p>*/}
-                    {/*    {*/}
-                    {/*        // indicates very long content*/}
-                    {/*        Array.from(*/}
-                    {/*            {*/}
-                    {/*                length: 100,*/}
-                    {/*            },*/}
-                    {/*            (_, index) => (*/}
-                    {/*                <React.Fragment key={index}>*/}
-                    {/*                    {index % 20 === 0 && index ? 'more' : '...'}*/}
-                    {/*                    <br/>*/}
-                    {/*                </React.Fragment>*/}
-                    {/*            ),*/}
-                    {/*        )*/}
-                    {/*    }*/}
-                    {/*</div>*/}
+                    {activeMenu === '3' && <TodoList/>}
                 </Content>
                 <Footer
                     style={{
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©2023 Created by Ant UED
                 </Footer>
             </Layout>
         </Layout>
