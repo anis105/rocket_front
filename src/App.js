@@ -57,7 +57,7 @@ const App = () => {
                     {activeMenu === '3' && <TodoList/>}
                 </Content>
                 <Footer style={{textAlign: 'center',}}>
-                    Ant Design ©2023 Created by Ant UED
+                    EduMorph ©2023 Created by Team Rocket
                 </Footer>
             </Layout>
         </Layout>
