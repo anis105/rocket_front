@@ -1,0 +1,72 @@
+.profile {
+  width: 100%;
+  display: flex;
+  .profileContainer {
+    flex: 6;
+    .Top {
+      padding: 10px;
+      margin: 20px;
+      text-align: center;
+
+      h1 {
+        color: lightgray;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+    .Bottom {
+      display: flex;
+      padding: 10px;
+      margin: 20px;
+      border: 2px solid black;
+
+      .left {
+        flex: 1;
+        text-align: center;
+        .item {
+          padding-top: 50px;
+          padding-left: 20px;
+          height: 100%;
+
+          display: flex;
+          align-content: center;
+          justify-content: center;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      .right {
+        flex: 3;
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: space-around;
+
+          .formInput {
+            width: 40%;
+
+            input {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid;
+            }
+          }
+          button {
+            border: 1px solid gray;
+            width: 150px;
+            background-color: teal;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}

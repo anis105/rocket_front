@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Signup from "./pages/signup/Signup";
+import Profile from "./pages/Profile/Profile";
+import Stats from "./pages/stats/Stats";
+import TodoList from "./components/todolist/Todolist";
+import Discussion from "./pages/discussion/Discussion";
+import { AuthContextProvider } from "./context/AuthContext";
+import "./index.css";
+
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/">
+              <Route index element={<Signup />} />
+              <Route path="login" element={<Login />} />
+              <Route path="home" element={<Home />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="stats" element={<Stats />} />
+              <Route path="discussion" element={<Discussion />} />
+              <Route path="todo" element={<TodoList />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </AuthContextProvider>
     </div>
   );
 }

@@ -1,0 +1,192 @@
+/* General Styles */
+
+@keyframes backgroundChange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Background Style with Animated Dark Blue Theme */
+/*body {*/
+/*  margin: 0;*/
+/*  padding: 20px;*/
+/*  color: #fff;*/
+/*  background: linear-gradient(-45deg, #3a7bd5, #3a6073);*/
+/*  background-size: 400% 400%;*/
+/*  animation: backgroundChange 15s ease infinite;*/
+/*}*/
+
+/* TodoList Container */
+.TodoList-container {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.TodoList-container:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Input fields and Buttons */
+.TodoList-container input[type="text"],
+.TodoList-container input[type="date"],
+.TodoList-container textarea,
+.TodoList-container select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.TodoList-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+.TodoList-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Search Bar */
+.search-bar input[type="text"] {
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjusting Task Text and Notes */
+span,
+.task-notes {
+  color: #212529; /* Darker color for task text and notes */
+}
+
+/* Completed Task Styling */
+span.completed {
+  text-decoration: line-through;
+  color: #6c757d; /* A lighter shade for completed tasks */
+}
+
+/* Task Notes */
+.task-notes {
+  font-size: 14px;
+  color: #495057;
+  margin-top: 8px;
+}
+
+/* Date Headers */
+.date-header {
+  background-color: #17a2b8;
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.close {
+  cursor: pointer;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sidebar-toggle-button {
+  /* Style your button here */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.sidebar-1 {
+  /* Style your sidebar here */
+  width: 200px; /* Adjust as needed */
+  position: absolute;
+  top: 50px; /* Adjust as needed */
+  left: 10px;
+  background-color: #f0f0f0; /* Example background color */
+  padding: 10px;
+  border: 1px solid #ddd;
+  /* Additional styles */
+}
+
+.sidebar-item {
+  /* Styles for sidebar items */
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sidebar-item.selected {
+  background-color: #007bff; /* Example for selected item */
+  color: white;
+}
+
+.TodoList-main {
+  margin-left: 220px; /* Adjust based on the width of the sidebar */
+  /* Additional styles */
+}
+
+/* ... existing styles */
+
+.class-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.class-modal-content {
+  color: black;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+}
+
+.class-modal-content .close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 600px) {
+  .TodoList-container {
+    padding: 15px;
+  }
+
+  .TodoList-container input[type="text"],
+  .TodoList-container input[type="date"],
+  .TodoList-container textarea,
+  .TodoList-container select,
+  .TodoList-container button {
+    width: 100%;
+  }
+}
