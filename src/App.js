@@ -3,7 +3,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Profile from "./pages/Profile/Profile";
 import Stats from "./pages/stats/Stats";
-import TodoList from "./components/todolist/Todolist";
+import Todo from "./pages/todo/Todo";
 import Discussion from "./pages/discussion/Discussion";
 import { AuthContextProvider } from "./context/AuthContext";
 import "./index.css";
@@ -23,7 +23,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="stats" element={<Stats />} />
               <Route path="discussion" element={<Discussion />} />
-              <Route path="todo" element={<TodoList />} />
+              <Route path="todo" element={<Todo />} />
             </Route>
           </Routes>
         </BrowserRouter>
