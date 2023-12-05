@@ -7,8 +7,8 @@ import {
 } from '@ant-design/icons';
 import {Layout, Menu, Typography} from 'antd';
 import './App.css';
-import TodoList from "./Components/TodoList/TodoList";
-import Course from "./Components/Course/Course";
+import TodoList from "./pages/TodoList/TodoList";
+import Course from "./pages/Course/Course";
 
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -46,7 +46,7 @@ const App = () => {
         <Layout hasSider>
             <Sider style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }}>
                 <div className="sidebar-logo">
-                    <img src={require("./Assets/img.png")} alt="logo"/>
+                    <img src={require("./assets/img.png")} alt="logo"/>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
                 </div>
             </Sider>
@@ -59,8 +59,8 @@ const App = () => {
                 <Content style={{margin: '24px 16px 0', overflow: 'initial',}}>
                     {/*<Switch>*/}
                     {/*    <Route path="/" exact element={<App/>}/>*/}
-                    {/*    <Route path="/Components/Course" element={<Course/>}/>*/}
-                    {/*    <Route path="/Components/TodoList" element={<TodoList/>}/>*/}
+                    {/*    <Route path="/components/Course" element={<Course/>}/>*/}
+                    {/*    <Route path="/components/TodoList" element={<TodoList/>}/>*/}
                     {/*</Switch>*/}
                     {activeMenu === '2-1' && <Course parameter={activeMenu}/>}
                     {activeMenu === '3' && <TodoList/>}

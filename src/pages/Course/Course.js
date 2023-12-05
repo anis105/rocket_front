@@ -1,6 +1,6 @@
 import React from 'react';
 import {Breadcrumb, Layout, Menu, theme} from 'antd';
-import {CourseNavBar} from "./CourseNavBar";
+import {CourseNavBar} from "../../components/CourseNavBar";
 
 
 const {Header, Content, Footer} = Layout;
