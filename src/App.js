@@ -11,6 +11,8 @@ import "./index.css";
 
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
+//main layout and all the pages are protected using protectedroute
+
 function App() {
   return (
     <div className="App">

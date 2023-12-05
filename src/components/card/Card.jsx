@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.scss";
 
+//this is card component that in the dashboard
 const Card = ({ type }) => {
   let data = { title: "", percentage: "", semester: "", img: "" };
 

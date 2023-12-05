@@ -12,6 +12,8 @@ import { UserAuth } from "../../context/AuthContext";
 const Sidebar = () => {
   const { user, logOut } = UserAuth();
   const navigate = useNavigate();
+
+  //create a async that navigates to login page and also catch error
   const handleLogout = async () => {
     try {
       await logOut();

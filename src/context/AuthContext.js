@@ -9,6 +9,7 @@ import {
 
 import { setDoc, doc } from "firebase/firestore";
 
+//The entire database and auth are used from firebase, all the functions are build in functions that referenced from doc
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
