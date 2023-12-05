@@ -3,11 +3,12 @@ import {
     DashboardOutlined,
     UnorderedListOutlined,
     MailOutlined,
-    BookOutlined,
+    BookOutlined, LogoutOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu, Typography} from 'antd';
 import './App.css';
 import TodoList from "./Components/TodoList/TodoList";
+import Course from "./Components/Course/Course";
 
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -31,6 +32,7 @@ const items = [
     ]),
     getItem('Todo List', '3', <BookOutlined/>),
     getItem('Inbox', '4', <MailOutlined/>),
+    getItem('Logout', '5', <LogoutOutlined/>)
 ];
 
 const App = () => {
@@ -49,17 +51,25 @@ const App = () => {
                 </div>
             </Sider>
 
+            {/*<Router>*/}
             <Layout className="site-layout" style={{marginLeft: 200,}}>
                 <Header style={{padding: 0,}}>
                     <Title style={{color: "white", marginLeft: 20,}} level={2}>EduMorph</Title>
                 </Header>
                 <Content style={{margin: '24px 16px 0', overflow: 'initial',}}>
+                    {/*<Switch>*/}
+                    {/*    <Route path="/" exact element={<App/>}/>*/}
+                    {/*    <Route path="/Components/Course" element={<Course/>}/>*/}
+                    {/*    <Route path="/Components/TodoList" element={<TodoList/>}/>*/}
+                    {/*</Switch>*/}
+                    {activeMenu === '2-1' && <Course parameter={activeMenu}/>}
                     {activeMenu === '3' && <TodoList/>}
                 </Content>
                 <Footer style={{textAlign: 'center',}}>
                     EduMorph ©2023 Created by Team Rocket
                 </Footer>
             </Layout>
+            {/*</Router>*/}
         </Layout>
     );
 };

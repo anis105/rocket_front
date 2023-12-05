@@ -75,7 +75,7 @@
 }
 
 /* Adjusting Task Text and Notes */
-span, .task-notes {
+.app-container.span, .app-container.task-notes {
   color: #212529; /* Darker color for task text and notes */
 }
 
