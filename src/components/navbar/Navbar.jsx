@@ -5,7 +5,23 @@ import ChatIcon from "@mui/icons-material/Chat";
 import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 const Navbar = () => {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      // If not in fullscreen mode, enter fullscreen
+      document.documentElement.requestFullscreen().then(() => {
+        setIsFullScreen(true);
+      });
+    } else {
+      // If in fullscreen mode, exit fullscreen
+      document.exitFullscreen().then(() => {
+        setIsFullScreen(false);
+      });
+    }
+  };
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -18,7 +34,8 @@ const Navbar = () => {
             <ChatIcon />
           </div>
           <div className="item">
-            <FullscreenExitIcon />
+            <FullscreenExitIcon onClick={toggleFullScreen} />
+            {/* {isFullScreen ? "Exit Fullscreen" : "Enter Fullscreen"} */}
           </div>
           <div className="item">
             <CalendarMonthIcon />
