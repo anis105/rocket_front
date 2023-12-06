@@ -1,10 +1,39 @@
-import React from 'react';
+import {React, useState} from 'react';
 import {Button, Checkbox, Form, Input} from 'antd';
+import {useNavigate} from "react-router-dom";
 
-const LoginPage = () => {
-    const onFinish = (values) => {
-        // Handle login logic here
-        console.log('Received values:', values);
+
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+}
+
+const Login = ({onLogin}) => {
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const onFinish = async (values) => {
+        // values.preventDefault();
+        setError('');
+        try {
+            // const response = await axios.post('http://localhost:8080/api/auth/login', values);
+            // if (response.data.id) {
+            //     // Authentication successful
+            //     // localStorage.setItem('token', response.data.token); // if to implement token based auth
+            //     document.cookie = `user=${JSON.stringify(response.data.user)}; Path=/; HttpOnly`;
+            //
+            // } else {
+            //     // Authentication failed
+            //     message.error('Login failed. Please check your credentials.');
+            // }
+            setCookie('loggedIn', 'true', 7)
+            setCookie('username', values.username, 7);
+            onLogin(values);
+            navigate('/home');
+        } catch (error) {
+            console.log(error)
+            setError(error.message);
+        }
     };
 
     return (
@@ -14,7 +43,7 @@ const LoginPage = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                background: 'url("path-to-your-background-image.jpg")',
+                backgroundImage: 'url(/umd_turtle.png)',
                 backgroundSize: 'cover',
             }}
         >
@@ -29,7 +58,8 @@ const LoginPage = () => {
                 <Form name="login" initialValues={{remember: true}} onFinish={onFinish}>
                     <Form.Item
                         name="username"
-                        rules={[{required: true, message: 'Please input your username!'}]}
+                        rules={[{required: true, message: 'Please enter your e-mail!'},
+                            {type: 'email', message: 'Please input a valid email!'}]}
                     >
                         <Input placeholder="Username"/>
                     </Form.Item>
@@ -56,4 +86,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default Login;
