@@ -26,8 +26,8 @@ const App = () => {
         if (loggedInValue === 'true') {
             // User is logged in, perform actions accordingly
             console.log('User is logged in.');
-            const username = getCookie('username');
-            setUser({username})
+            const userId = getCookie('userId');
+            setUser({userId})
         } else {
             // User is not logged in or the cookie doesn't exist
             console.log('User is not logged in.');

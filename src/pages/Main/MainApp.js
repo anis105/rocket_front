@@ -1,76 +1,21 @@
 import {React, useState} from 'react';
-import {BookOutlined, DashboardOutlined, LogoutOutlined, MailOutlined, UnorderedListOutlined,} from '@ant-design/icons';
-import {Button, Layout, Menu, Typography} from 'antd';
+import {Layout, Typography} from 'antd';
 import TodoList from "../TodoList/TodoList";
 import Course from "../Course/Course";
-import {useNavigate} from "react-router-dom";
+import {MainAppSider} from "../../components/MainAppSider";
 
 
-const {Header, Content, Footer, Sider} = Layout;
+const {Header, Content, Footer} = Layout;
 const {Title} = Typography;
-
-function getItem(label, key, icon, children) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    };
-}
-
-const items = [
-    getItem('DashBoard', '1', <DashboardOutlined/>),
-    getItem('Courses', '2', <UnorderedListOutlined/>, [
-        getItem('Course 1', '2-1'),
-        getItem('Course 2', '2-2'),
-        getItem('Course 3', '2-3'),
-    ]),
-    getItem('Todo List', '3', <BookOutlined/>),
-    getItem('Inbox', '4', <MailOutlined/>),
-];
-
 
 const MainApp = (user) => {
     console.log(user)
     const [activeMenu, setActiveMenu] = useState('1');
-    const navigate = useNavigate();
-
-    const onMenuClick = (e) => {
-        setActiveMenu(e.key);
-    };
-
-    const onLogout = () => {
-        // Remove the user cookie
-        document.cookie = 'loggedIn=; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        navigate('/');
-        window.location.reload();
-
-
-        // Perform other logout actions
-    };
+    const courses = []
 
     return (
         <Layout hasSider>
-            <Sider style={{overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0}}>
-                <div className="sidebar-logo">
-                    <img src={require("../../assets/img.png")} alt="logo"/>
-                </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
-                <div className="logout" style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    position: 'absolute',
-                    bottom: 16,
-                    left: '50%',
-                    transform: 'translateX(-50%)'
-                }}>
-                    <Button type="primary" icon={<LogoutOutlined/>} size="large" onClick={onLogout}>
-                        Log Out
-                    </Button>
-                </div>
-            </Sider>
-
+            <MainAppSider courses={courses} setActiveMenu={setActiveMenu}/>
             {/*<Router>*/}
             <Layout className="site-layout" style={{marginLeft: 200,}}>
                 <Header style={{padding: 0,}}>
