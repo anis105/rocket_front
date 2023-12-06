@@ -1,8 +1,9 @@
 import {React, useState} from 'react';
 import {BookOutlined, DashboardOutlined, LogoutOutlined, MailOutlined, UnorderedListOutlined,} from '@ant-design/icons';
-import {Layout, Menu, Typography} from 'antd';
+import {Button, Layout, Menu, Typography} from 'antd';
 import TodoList from "../TodoList/TodoList";
 import Course from "../Course/Course";
+import {useNavigate} from "react-router-dom";
 
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -26,16 +27,26 @@ const items = [
     ]),
     getItem('Todo List', '3', <BookOutlined/>),
     getItem('Inbox', '4', <MailOutlined/>),
-    getItem('Logout', '5', <LogoutOutlined/>)
 ];
 
 
 const MainApp = (user) => {
     console.log(user)
     const [activeMenu, setActiveMenu] = useState('1');
+    const navigate = useNavigate();
 
     const onMenuClick = (e) => {
         setActiveMenu(e.key);
+    };
+
+    const onLogout = () => {
+        // Remove the user cookie
+        document.cookie = 'loggedIn=; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        navigate('/');
+        window.location.reload();
+
+
+        // Perform other logout actions
     };
 
     return (
@@ -43,7 +54,20 @@ const MainApp = (user) => {
             <Sider style={{overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0}}>
                 <div className="sidebar-logo">
                     <img src={require("../../assets/img.png")} alt="logo"/>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
+                </div>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={onMenuClick}/>
+                <div className="logout" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'absolute',
+                    bottom: 16,
+                    left: '50%',
+                    transform: 'translateX(-50%)'
+                }}>
+                    <Button type="primary" icon={<LogoutOutlined/>} size="large" onClick={onLogout}>
+                        Log Out
+                    </Button>
                 </div>
             </Sider>
 
