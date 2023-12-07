@@ -17,12 +17,13 @@ function getItem(label, key, icon, children) {
 }
 
 
-export function MainAppSider({user, setCourses}) {
+export function MainAppSider({user}) {
+    console.log(user)
     const [courses, setLocalCourses] = useState([]); // Local state to hold courses
     useEffect(() => {
         const getCourses = async () => {
             try {
-                const response = await fetch(`http://localhost:8081/api/enrollments/byUser/${user.userId}`);
+                const response = await fetch(`http://localhost:8081/api/enrollments/byUser/${user}`);
                 if (response.ok) {
                     const data = await response.json();
                     const coursesIds = data.map(item => item.courseId);
@@ -47,20 +48,18 @@ export function MainAppSider({user, setCourses}) {
             }
         };
         getCourses();
-        setCourses(courses);
-    }, [user.userId, setCourses]);
+    }, [user]);
 
     const navigate = useNavigate();
     const onLogout = () => {
         // Remove the user cookie
-        document.cookie = 'loggedIn=; username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'loggedIn=; userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         navigate('/');
         window.location.reload();
         // Perform other logout actions
     };
 
     function coursesItems(courses) {
-        console.log(courses)
         return courses.map(course =>
             getItem(course.courseName, '2-' + course.courseId));
     }

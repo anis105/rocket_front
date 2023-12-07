@@ -17,7 +17,6 @@ const Login = ({onLogin}) => {
         setError('');
         try {
             const response = await fetch(`http://localhost:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
-            console.log("response", response);
             if (response.ok) {
                 const data = await response.json();
                 setCookie('loggedIn', 'true', 7)

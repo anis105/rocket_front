@@ -17,13 +17,21 @@ const items = [
     getItem('Discussion Forum', '6'),
 ]
 
-export function CourseNavBar() {
+
+export function CourseNavBar({setCoursePage}) {
+    const onMenuClick = (e) => {
+        setCoursePage(e.key);
+    };
+    // useEffect(() => {
+    //     setCoursePage('1');
+    // }, []);
     return (
         <Menu
             theme="light"
             mode="horizontal"
             defaultSelectedKeys={['1']}
             items={items}
+            onClick={onMenuClick}
         />
     )
 }

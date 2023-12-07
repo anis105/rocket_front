@@ -29,7 +29,7 @@ const App = () => {
             // User is logged in, perform actions accordingly
             console.log('User is logged in.');
             const userId = getCookie('userId');
-            setUser({userId})
+            setUser(userId);
         } else {
             // User is not logged in or the cookie doesn't exist
             console.log('User is not logged in.');
@@ -39,7 +39,7 @@ const App = () => {
     const onLogin = (userData) => {
         setUser(userData);
     };
-
+    console.log("user", user)
     // const courseId = "CS 132";
     return (
         <div>

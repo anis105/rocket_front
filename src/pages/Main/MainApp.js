@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React} from 'react';
 import {Layout, Typography} from 'antd';
 import {MainAppSider} from "../../components/MainAppSider";
 
@@ -8,10 +8,9 @@ const {Title} = Typography;
 
 
 const MainApp = ({user, component}) => {
-    const [courses, setCourses] = useState(null);
     return (
         <Layout hasSider>
-            <MainAppSider user={user} setCourses={setCourses}/>
+            <MainAppSider user={user}/>
             <Layout className="site-layout" style={{marginLeft: 200,}}>
                 <Header style={{padding: 0,}}>
                     <Title style={{color: "white", marginLeft: 20,}} level={2}>EduMorph</Title>
