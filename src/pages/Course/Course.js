@@ -17,7 +17,7 @@ const Course = () => {
         // To get the course information by courseId
         const getCourse = async () => {
             try {
-                const response = await fetch(`http://0.0.0.0:8081/api/courses/${courseId}`);
+                const response = await fetch(`http://ec2-18-220-170-81.us-east-2.compute.amazonaws.com:8081/api/courses/${courseId}`);
                 if (response.ok) {
                     const data = await response.json();
                     setThisCourse(data);

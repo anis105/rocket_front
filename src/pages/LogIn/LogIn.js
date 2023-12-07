@@ -19,11 +19,12 @@ const Login = ({onLogin}) => {
         setError('');
         try {
             // Fetch data of the user if authentication is successful
-            const response = await fetch(`http://0.0.0.0:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
+            const response = await fetch(`http://ec2-18-220-170-81.us-east-2.compute.amazonaws.com:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
             if (response.ok) {
                 const data = await response.json();
                 setCookie('loggedIn', 'true', 7)
                 setCookie('userId', data.userId, 7);
+                console.log(document)
                 onLogin(data.userId);
                 navigate('/home');
             } else {

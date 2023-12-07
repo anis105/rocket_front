@@ -24,14 +24,14 @@ export function MainAppSider({user}) {
         // Fetch courses from the server of a given user
         const getCourses = async () => {
             try {
-                const response = await fetch(`http://0.0.0.0:8081/api/enrollments/byUser/${user}`);
+                const response = await fetch(`http://ec2-18-220-170-81.us-east-2.compute.amazonaws.com:8081/api/enrollments/byUser/${user}`);
                 if (response.ok) {
                     const data = await response.json();
                     const coursesIds = data.map(item => item.courseId);
                     const fetchedCourses = await Promise.all(coursesIds.map(async courseId => {
                         // Fetch course details for each course in courses
                         try {
-                            const response = await fetch(`http://0.0.0.0:8081/api/courses/${courseId}`);
+                            const response = await fetch(`http://ec2-18-220-170-81.us-east-2.compute.amazonaws.com:8081/api/courses/${courseId}`);
                             if (response.ok) {
                                 return await response.json();
                             } else {

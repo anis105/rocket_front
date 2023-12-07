@@ -8,7 +8,7 @@ const CourseAssignment = ({thisCourse}) => {
     const fetchAssignment = async () => {
         // To get the assignment information by courseId
         try {
-            const response = await fetch(`http://0.0.0.0:8081/api/assignments/byCourse/${thisCourse.courseId}`);
+            const response = await fetch(`http://ec2-18-220-170-81.us-east-2.compute.amazonaws.com:8081/api/assignments/byCourse/${thisCourse.courseId}`);
             if (response.ok) {
                 const data = await response.json();
                 setAssignment(data);
