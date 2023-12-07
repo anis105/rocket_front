@@ -5,9 +5,10 @@ const {Title, Text} = Typography;
 
 const CourseHome = ({thisCourse}) => {
     return (
-        <div className="site-layout-content1">
+        <div className="site-layout-content">
             <Title>{thisCourse.courseName}</Title>
-            <Text>by {thisCourse.description}</Text>
+            <Title level={3}>instructed by {thisCourse.instructor.username}</Title>
+            <Text>{thisCourse.description}</Text>
         </div>
     );
 };

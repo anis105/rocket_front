@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './TodoList.css';
 
 function TodoList() {
@@ -34,24 +34,6 @@ function TodoList() {
         return savedTodos ? JSON.parse(savedTodos) : initialTodos;
     });
 
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-    const classNames = ['ENPM611', 'ENPM612', 'ENPM613', 'ENPM614', 'ENPM809'];
-    const [selectedClass, setSelectedClass] = useState('All');
-
-    const [showClassModal, setShowClassModal] = useState(false);
-    const [activeClass, setActiveClass] = useState('');
-
-    // Function to open the modal with class details
-    const handleClassSelect = (className) => {
-        setSelectedClass(className);
-        openClassModal(className);
-    };
-
-    // Function to open the modal with class details
-    const openClassModal = (className) => {
-        setActiveClass(className);
-        setShowClassModal(true);
-    };
     const [newTask, setNewTask] = useState('');
     const [newPriority, setNewPriority] = useState('Medium');
     const [newNotes, setNewNotes] = useState('');
@@ -59,9 +41,6 @@ function TodoList() {
     const [searchTerm, setSearchTerm] = useState('');
     const [showLogin, setShowLogin] = useState(false);  // State for controlling login modal visibility
 
-    const handleLogin = () => {
-        setShowLogin(!showLogin); // Toggle login modal visibility
-    };
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
@@ -94,39 +73,6 @@ function TodoList() {
 
     return (
         <div className="app-container">
-            {/* Collapsible Sidebar */}
-            {isDropdownVisible && (
-                <div className="sidebar">
-                    <button onClick={() => handleClassSelect('All')}>All Classes</button>
-                    {classNames.map(className => (
-                        <button
-                            key={className}
-                            className={`sidebar-item ${selectedClass === className ? 'selected' : ''}`}
-                            onClick={() => handleClassSelect(className)}
-                        >
-                            {className}
-                        </button>
-                    ))}
-                </div>
-            )}
-
-            {/* Class Modal */}
-            {showClassModal && (
-                <div className="class-modal">
-                    <div className="class-modal-content">
-                        <span className="close" onClick={() => setShowClassModal(false)}>&times;</span>
-                        <h2>{activeClass}</h2>
-                        {/* File list or other content related to the class */}
-                        <ul>
-                            {/* Example file list */}
-                            <li>Assignment 1</li>
-                            <li>Assignment 2</li>
-                            <li>Project Details</li>
-                        </ul>
-                    </div>
-                </div>
-            )}
-
             <div className="TodoList-container">
                 {/* Login Modal */}
                 {showLogin && (

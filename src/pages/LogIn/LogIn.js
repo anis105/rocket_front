@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import {Button, Checkbox, Form, Input, message} from 'antd';
 import {useNavigate} from "react-router-dom";
 
-
+// This function is used to set the value of a cookie
 function setCookie(name, value, days) {
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
@@ -12,10 +12,13 @@ function setCookie(name, value, days) {
 const Login = ({onLogin}) => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    // When the form is submitted, this function will be called
     const onFinish = async (values) => {
         // values.preventDefault();
         setError('');
         try {
+            // Fetch data of the user if authentication is successful
             const response = await fetch(`http://localhost:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
             if (response.ok) {
                 const data = await response.json();
@@ -28,10 +31,6 @@ const Login = ({onLogin}) => {
                 setError('Login failed. Please check your credentials.');
                 console.log(error)
             }
-            // setCookie('loggedIn', 'true', 7)
-            // setCookie('userId', values.userEmail, 7);
-            // onLogin(values.userEmail);
-            // navigate('/home');
         } catch (error) {
             console.log(error)
             setError(error.message);

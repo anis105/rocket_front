@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "antd";
 import Card from "../../components/card/Card";
 import "./Dashboard.css";
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 
 const Dashboard = () => {
   return (

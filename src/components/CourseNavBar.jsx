@@ -1,6 +1,7 @@
 import {Menu} from "antd";
 import React from "react";
 
+// Constructor of a menu item
 function getItem(label, key) {
     return {
         key,
@@ -8,6 +9,7 @@ function getItem(label, key) {
     };
 }
 
+// Items of the menu
 const items = [
     getItem('Home', '1'),
     getItem('Materials', '2'),
@@ -22,9 +24,6 @@ export function CourseNavBar({setCoursePage}) {
     const onMenuClick = (e) => {
         setCoursePage(e.key);
     };
-    // useEffect(() => {
-    //     setCoursePage('1');
-    // }, []);
     return (
         <Menu
             theme="light"
