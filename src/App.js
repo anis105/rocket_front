@@ -20,15 +20,19 @@ function getCookie(name) {
 }
 
 const App = () => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('userId');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
 
     useEffect(() => {
         const loggedInValue = getCookie('loggedIn');
+        const userId = getCookie('userId');
+        console.log("userId", userId)
 
         if (loggedInValue === 'true') {
             // User is logged in, perform actions accordingly
             console.log('User is logged in.');
-            const userId = getCookie('userId');
             setUser(userId);
         } else {
             // User is not logged in or the cookie doesn't exist

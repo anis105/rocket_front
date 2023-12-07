@@ -3,6 +3,8 @@ import {Layout} from 'antd';
 import {CourseNavBar} from "../../components/CourseNavBar";
 import {useParams} from "react-router-dom";
 import CourseHome from "./CourseHome";
+import CourseMaterial from "./CourseMaterial";
+import CourseAssignment from "./CourseAssignment";
 
 const {Header, Content, Footer} = Layout;
 
@@ -40,7 +42,17 @@ const Course = () => {
                     {(coursePage === '1' && thisCourse) ? (
                         <CourseHome thisCourse={thisCourse}/>
                     ) : (
-                        <p>Loading...</p> // or any other fallback content
+                        <p></p> // or any other fallback content
+                    )}
+                    {(coursePage === '2' && thisCourse) ? (
+                        <CourseMaterial thisCourse={thisCourse}/>
+                    ) : (
+                        <p></p> // or any other fallback content
+                    )}
+                    {(coursePage === '3' && thisCourse) ? (
+                        <CourseAssignment thisCourse={thisCourse}/>
+                    ) : (
+                        <p></p> // or any other fallback content
                     )}
                 </div>
             </Content>

@@ -28,10 +28,6 @@ const Login = ({onLogin}) => {
                 setError('Login failed. Please check your credentials.');
                 console.log(error)
             }
-            // setCookie('loggedIn', 'true', 7)
-            // setCookie('userId', values.userEmail, 7);
-            // onLogin(values.userEmail);
-            // navigate('/home');
         } catch (error) {
             console.log(error)
             setError(error.message);

@@ -22,9 +22,6 @@ export function CourseNavBar({setCoursePage}) {
     const onMenuClick = (e) => {
         setCoursePage(e.key);
     };
-    // useEffect(() => {
-    //     setCoursePage('1');
-    // }, []);
     return (
         <Menu
             theme="light"

@@ -1,6 +1,7 @@
-import {React} from 'react';
+import {React, useEffect} from 'react';
 import {Layout, Typography} from 'antd';
 import {MainAppSider} from "../../components/MainAppSider";
+import {useNavigate} from "react-router-dom";
 
 
 const {Header, Content, Footer} = Layout;
@@ -8,6 +9,12 @@ const {Title} = Typography;
 
 
 const MainApp = ({user, component}) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user) {
+            navigate('/home');
+        }
+    }, []);
     return (
         <Layout hasSider>
             <MainAppSider user={user}/>
