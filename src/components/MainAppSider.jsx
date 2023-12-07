@@ -1,9 +1,11 @@
 import {BookOutlined, DashboardOutlined, LogoutOutlined, MailOutlined, UnorderedListOutlined} from "@ant-design/icons";
-import {React} from "react";
+import {React, useEffect, useState} from "react";
 import {Button, Layout, Menu} from "antd";
 import {useNavigate} from "react-router-dom";
 
 const {Sider} = Layout;
+
+// let courses = []
 
 function getItem(label, key, icon, children) {
     return {
@@ -14,26 +16,40 @@ function getItem(label, key, icon, children) {
     };
 }
 
-const courses = [
-    {course_id: 1, course_name: 'Course 1'},
-    {course_id: 2, course_name: 'Course 2'},
-    {course_id: 3, course_name: 'Course 3'}
-];
 
-function coursesItems(courses) {
-    const coursesItems = courses.map(course =>
-        getItem(course.course_name, '2-' + course.course_id))
-    return coursesItems;
-}
+export function MainAppSider({user, setCourses}) {
+    const [courses, setLocalCourses] = useState([]); // Local state to hold courses
+    useEffect(() => {
+        const getCourses = async () => {
+            try {
+                const response = await fetch(`http://localhost:8081/api/enrollments/byUser/${user.userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const coursesIds = data.map(item => item.courseId);
+                    const fetchedCourses = await Promise.all(coursesIds.map(async courseId => {
+                        try {
+                            const response = await fetch(`http://localhost:8081/api/courses/${courseId}`);
+                            if (response.ok) {
+                                return await response.json();
+                            } else {
+                                console.log("error")
+                            }
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    }));
+                    setLocalCourses(fetchedCourses);
+                } else {
+                    console.log("error")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        getCourses();
+        setCourses(courses);
+    }, [user.userId, setCourses]);
 
-const items = [
-    getItem('DashBoard', '1', <DashboardOutlined/>),
-    getItem('Courses', '2', <UnorderedListOutlined/>, coursesItems(courses)),
-    getItem('Todo List', '3', <BookOutlined/>),
-    getItem('Inbox', '4', <MailOutlined/>),
-];
-
-export function MainAppSider({courses, setActiveMenu}) {
     const navigate = useNavigate();
     const onLogout = () => {
         // Remove the user cookie
@@ -43,8 +59,30 @@ export function MainAppSider({courses, setActiveMenu}) {
         // Perform other logout actions
     };
 
+    function coursesItems(courses) {
+        console.log(courses)
+        return courses.map(course =>
+            getItem(course.courseName, '2-' + course.courseId));
+    }
+
+    const items = [
+        getItem('DashBoard', '1', <DashboardOutlined/>),
+        getItem('Courses', '2', <UnorderedListOutlined/>, coursesItems(courses)),
+        getItem('Todo List', '3', <BookOutlined/>),
+        getItem('Inbox', '4', <MailOutlined/>),
+    ];
+
     const onMenuClick = (e) => {
-        setActiveMenu(e.key);
+        const key = e.key;
+        if (key.startsWith('2-')) {
+            const courseId = key.split('-')[1];
+            // setCourseId(courseId);
+            navigate(`/course/${courseId}`);
+        } else if (key === '1') {
+            navigate('/home');
+        } else if (key === '3') {
+            navigate('/todoList');
+        }
     };
 
     return (

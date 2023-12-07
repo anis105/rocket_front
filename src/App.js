@@ -4,6 +4,8 @@ import TodoList from "./pages/TodoList/TodoList";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import LogIn from "./pages/LogIn/LogIn";
 import MainApp from "./pages/Main/MainApp";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Course from "./pages/Course/Course";
 
 
 function getCookie(name) {
@@ -37,16 +39,19 @@ const App = () => {
     const onLogin = (userData) => {
         setUser(userData);
     };
+
+    // const courseId = "CS 132";
     return (
         <div>
             <Router>
                 <Routes>
                     <Route path="/" element={user ? <MainApp user={user}/> : <LogIn onLogin={onLogin}/>}/>
-                    <Route path="/home" element={user ? <MainApp user={user}/> : <Navigate to="/"/>}/>
-                    {/*<Route path="profile" element={<Profile />} />*/}
-                    {/*<Route path="stats" element={<Stats />} />*/}
-                    {/*<Route path="discussion" element={<Discussion />} />*/}
-                    <Route path="./pages/TodoList/TodoList" element={<TodoList/>}/>>
+                    <Route path="/home"
+                           element={user ? <MainApp user={user} component={<Dashboard/>}/> : <Navigate to="/"/>}/>
+                    <Route path="/course/:courseId"
+                           element={user ? <MainApp user={user} component={<Course/>}/> : <Navigate to="/"/>}/>
+                    <Route path="/todoList"
+                           element={user ? <MainApp user={user} component={<TodoList/>}/> : <Navigate to="/"/>}/>
                 </Routes>
             </Router>
         </div>

@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import {Button, Checkbox, Form, Input} from 'antd';
+import {Button, Checkbox, Form, Input, message} from 'antd';
 import {useNavigate} from "react-router-dom";
 
 
@@ -16,28 +16,23 @@ const Login = ({onLogin}) => {
         // values.preventDefault();
         setError('');
         try {
-            // const response = await axios.post('http://localhost:8081/api/user/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(values),
-            // });
-            // if (response.ok) {
-            //     const data = await response.json();
-            //     setCookie('loggedIn', 'true', 7)
-            //     setCookie('userId', data.userId, 7);
-            //     onLogin(data.userId);
-            //     navigate('/home');
-            // } else {
-            //     message.error('Login failed. Please check your credentials.');
-            //     setError('Login failed. Please check your credentials.');
-            //     console.log(error)
-            // }
-            setCookie('loggedIn', 'true', 7)
-            setCookie('userId', values.userEmail, 7);
-            onLogin(values.userEmail);
-            navigate('/home');
+            const response = await fetch(`http://localhost:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
+            console.log("response", response);
+            if (response.ok) {
+                const data = await response.json();
+                setCookie('loggedIn', 'true', 7)
+                setCookie('userId', data.userId, 7);
+                onLogin(data.userId);
+                navigate('/home');
+            } else {
+                message.error('Login failed. Please check your credentials.');
+                setError('Login failed. Please check your credentials.');
+                console.log(error)
+            }
+            // setCookie('loggedIn', 'true', 7)
+            // setCookie('userId', values.userEmail, 7);
+            // onLogin(values.userEmail);
+            // navigate('/home');
         } catch (error) {
             console.log(error)
             setError(error.message);

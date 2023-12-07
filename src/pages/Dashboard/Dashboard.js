@@ -1,24 +1,20 @@
 import React from 'react';
 import {Layout} from 'antd';
-import {CourseNavBar} from "../../components/CourseNavBar";
-import {useParams} from "react-router-dom";
 
 
 const {Header, Content, Footer} = Layout;
 
-const Course = () => {
-    const {courseId} = useParams();
+const Dashboard = () => {
     return (
         <Layout className="layout">
             <div className="demo-logo"/>
-            <CourseNavBar/>
             <Content style={{padding: '0 50px',}}>
                 <div className="site-layout-content">
-                    {courseId}
+                    Dashboard here
                     {/*{activeMenu}*/}
                 </div>
             </Content>
         </Layout>
     );
 };
-export default Course;
+export default Dashboard;
