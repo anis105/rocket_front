@@ -20,7 +20,7 @@ const CourseMaterial = ({thisCourse}) => {
         }
     }
     useEffect(() => {
-        fetchContent();
+        fetchContent().then(r => console.log(r));
     }, [thisCourse]);
 
     return (

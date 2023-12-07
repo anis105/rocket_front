@@ -20,7 +20,7 @@ const CourseAssignment = ({thisCourse}) => {
         }
     }
     useEffect(() => {
-        fetchAssignment();
+        fetchAssignment().then(r => console.log(r));
     }, [thisCourse]);
 
     return (
