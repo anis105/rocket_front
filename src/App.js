@@ -7,7 +7,7 @@ import MainApp from "./pages/Main/MainApp";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Course from "./pages/Course/Course";
 
-
+// This function is used to get the value of a cookie
 function getCookie(name) {
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
@@ -20,16 +20,15 @@ function getCookie(name) {
 }
 
 const App = () => {
-    const [user, setUser] = useState(() => {
-        const storedUser = localStorage.getItem('userId');
-        return storedUser ? JSON.parse(storedUser) : null;
-    });
+    // This state variable is used to store the user ID of the logged in user
+    const [user, setUser] = useState(null);
 
+    // This effect runs only once when the app is first rendered
     useEffect(() => {
         const loggedInValue = getCookie('loggedIn');
         const userId = getCookie('userId');
-        console.log("userId", userId)
 
+        // Check if the cookie exists and the user is logged in
         if (loggedInValue === 'true') {
             // User is logged in, perform actions accordingly
             console.log('User is logged in.');
@@ -40,11 +39,10 @@ const App = () => {
         }
     }, []);
 
+    // This function is used to set the user ID of the logged in user
     const onLogin = (userData) => {
         setUser(userData);
     };
-    console.log("user", user)
-    // const courseId = "CS 132";
     return (
         <div>
             <Router>

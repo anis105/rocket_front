@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Typography} from "antd";
 
-const {Title, Text} = Typography;
+const {Title} = Typography;
 
 const CourseMaterial = ({thisCourse}) => {
     const [content, setContent] = useState(null); // [content, setContent]
     const fetchContent = async () => {
+        // To get the content information by courseId
         try {
             const response = await fetch(`http://localhost:8081/api/content/byCourse/${thisCourse.courseId}`);
             if (response.ok) {
@@ -21,7 +22,7 @@ const CourseMaterial = ({thisCourse}) => {
     useEffect(() => {
         fetchContent();
     }, [thisCourse]);
-    console.log("content", content)
+
     return (
         <div className="site-layout-content">
             <Title>{thisCourse.courseName}</Title>

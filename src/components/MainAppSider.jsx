@@ -5,8 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 const {Sider} = Layout;
 
-// let courses = []
-
+// Constructor of a menu item
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -16,11 +15,13 @@ function getItem(label, key, icon, children) {
     };
 }
 
-
+// Sider component of the main app
 export function MainAppSider({user}) {
-    console.log(user)
     const [courses, setLocalCourses] = useState([]); // Local state to hold courses
+    const navigate = useNavigate();
+
     useEffect(() => {
+        // Fetch courses from the server of a given user
         const getCourses = async () => {
             try {
                 const response = await fetch(`http://localhost:8081/api/enrollments/byUser/${user}`);
@@ -28,6 +29,7 @@ export function MainAppSider({user}) {
                     const data = await response.json();
                     const coursesIds = data.map(item => item.courseId);
                     const fetchedCourses = await Promise.all(coursesIds.map(async courseId => {
+                        // Fetch course details for each course in courses
                         try {
                             const response = await fetch(`http://localhost:8081/api/courses/${courseId}`);
                             if (response.ok) {
@@ -47,23 +49,24 @@ export function MainAppSider({user}) {
                 console.log(error)
             }
         };
-        getCourses();
+        getCourses().then(r => console.log(r));
     }, [user]);
 
-    const navigate = useNavigate();
+
     const onLogout = () => {
-        // Remove the user cookie
+        // Remove the user cookie on logout
         document.cookie = 'loggedIn=; userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         navigate('/');
         window.location.reload();
-        // Perform other logout actions
     };
 
+    // Create a menu item for each course
     function coursesItems(courses) {
         return courses.map(course =>
             getItem(course.courseName, '2-' + course.courseId));
     }
 
+    // Create menu items
     const items = [
         getItem('DashBoard', '1', <DashboardOutlined/>),
         getItem('Courses', '2', <UnorderedListOutlined/>, coursesItems(courses)),
@@ -71,6 +74,7 @@ export function MainAppSider({user}) {
         getItem('Inbox', '4', <MailOutlined/>),
     ];
 
+    // Handle menu item click
     const onMenuClick = (e) => {
         const key = e.key;
         if (key.startsWith('2-')) {

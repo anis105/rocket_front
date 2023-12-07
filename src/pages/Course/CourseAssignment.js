@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Typography} from "antd";
 
-const {Title, Text} = Typography;
+const {Title} = Typography;
 
 const CourseAssignment = ({thisCourse}) => {
     const [assignment, setAssignment] = useState(null); // [content, setContent]
     const fetchAssignment = async () => {
+        // To get the assignment information by courseId
         try {
             const response = await fetch(`http://localhost:8081/api/assignments/byCourse/${thisCourse.courseId}`);
             if (response.ok) {
@@ -21,7 +22,7 @@ const CourseAssignment = ({thisCourse}) => {
     useEffect(() => {
         fetchAssignment();
     }, [thisCourse]);
-    console.log("assignment", assignment)
+
     return (
         <div className="site-layout-content">
             <Title>{thisCourse.courseName}</Title>
