@@ -8,7 +8,7 @@ const CourseMaterial = ({thisCourse}) => {
     const fetchContent = async () => {
         // To get the content information by courseId
         try {
-            const response = await fetch(`http://localhost:8081/api/content/byCourse/${thisCourse.courseId}`);
+            const response = await fetch(`http://0.0.0.0:8081/api/content/byCourse/${thisCourse.courseId}`);
             if (response.ok) {
                 const data = await response.json();
                 setContent(data);
