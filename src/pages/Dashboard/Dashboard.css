@@ -1,0 +1,12 @@
+.cardContainer {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+.site-layout-content {
+  text-align: center;
+}
+p {
+  font-weight: bold;
+  font-size: 20px;
+}
