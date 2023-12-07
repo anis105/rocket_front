@@ -19,7 +19,7 @@ const Login = ({onLogin}) => {
         setError('');
         try {
             // Fetch data of the user if authentication is successful
-            const response = await fetch(`http://172.31.24.110:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
+            const response = await fetch(`http://0.0.0.0:8081/api/users/authenticate?userEmail=${values.userEmail}&password=${values.password}`);
             if (response.ok) {
                 const data = await response.json();
                 setCookie('loggedIn', 'true', 7)
